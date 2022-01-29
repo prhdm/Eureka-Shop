@@ -43,10 +43,10 @@ public class Log {
         PrintStream printStream = new PrintStream(fileOutputStream);
         switch (operation) {
 
-            case "login" -> printStream.printf("[%s] ADMIN-LOGIN : Admin Has Been Logged into panel .\n", new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
-            case "remove" -> printStream.printf("[%s] ADMIN-REMOVE : Admin Has Been Removed %s.\n", new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()), username );
-            case "verify" -> printStream.printf("[%s] ADMIN-VERIFY : Admin Has Been verify %s.\n", new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()), username );
-            case "removeitem" -> printStream.printf("[%s] ADMIN-ITEM : Admin Has Been Removed %s.\n", new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()), username );
+            case "login" -> printStream.printf("[%s] ADMIN-LOGIN : Admin logged into the panel. .\n", new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
+            case "remove" -> printStream.printf("[%s] ADMIN-REMOVE : Admin removed user %s.\n", new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()), username );
+            case "verify" -> printStream.printf("[%s] ADMIN-VERIFY : Admin verified user %s.\n", new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()), username );
+            case "removeitem" -> printStream.printf("[%s] ADMIN-ITEM : Admin removed item %s.\n", new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()), username );
 
         }
         printStream.close();
