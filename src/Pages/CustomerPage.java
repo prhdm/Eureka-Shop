@@ -134,7 +134,7 @@ public class CustomerPage {
                         if (o.balance.compareTo(new BigInteger(i.price)) != -1) {
                             o.balance = o.balance.subtract(new BigInteger(i.price));
                             Items.removeItem(i);
-                            System.out.println(Colors.RED + "You have successfully bought " + i.itemName + " ." + Colors.RESET);
+                            System.out.println(Colors.GREEN + "You have successfully bought " + i.itemName + "." + Colors.RESET);
                             Log.itemsLog(username, i.itemName, "buy");
                         } else {
                             System.out.println(Colors.RED + "You dont have enough money." + Colors.RESET);

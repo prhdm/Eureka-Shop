@@ -8,6 +8,7 @@ import utils.log.Log;
 
 import java.io.IOException;
 import java.math.BigInteger;
+import java.util.Locale;
 
 public class SellerPage {
     public static void sellerPage(String username) throws IOException {
@@ -37,19 +38,30 @@ public class SellerPage {
                         System.out.println(Colors.BLUE + "Enter Item's name:" + Colors.RESET);
                         System.out.print(Colors.YELLOW_BRIGHT + ">> " + Colors.RESET);
                         itemName = InputHandler.inputHandler().next();
-                        if (Items.getItem(itemName) == null) {
+                        if (itemName.equalsIgnoreCase("cancel")) { ClearConsole.clearConsole(); break;}
+                        if (Items.getItem(itemName) != null) {
                             System.out.println(Colors.RED + "This item is already in shop. Try another name!" + Colors.RESET);
                         } else break;
                     }
-                    System.out.println(Colors.BLUE +"Enter the price:"+ Colors.RESET);
-                    System.out.print(Colors.YELLOW_BRIGHT + ">> " + Colors.RESET);
-                    String price = InputHandler.inputHandler().next();
-                    new BigInteger(price);
-                    System.out.println(Colors.BLUE +"Enter the tag:"+ Colors.RESET);
-                    System.out.print(Colors.YELLOW_BRIGHT + ">> " + Colors.RESET);
-                    String tag = InputHandler.inputHandler().next();
-                    Items.addItem(new Items(username, itemName.toLowerCase(), price, tag.toLowerCase()));
-                    Log.itemsLog(username,itemName,"add");
+                    if (itemName.equalsIgnoreCase("cancel")) { ClearConsole.clearConsole();
+                    } else {
+                        System.out.println(Colors.BLUE + "Enter the price:" + Colors.RESET);
+                        System.out.print(Colors.YELLOW_BRIGHT + ">> " + Colors.RESET);
+                        String price = InputHandler.inputHandler().next();
+                        if (price.equalsIgnoreCase("cancel")) { ClearConsole.clearConsole();
+                        } else {
+                            new BigInteger(price);
+                            System.out.println(Colors.BLUE + "Enter the tag:" + Colors.RESET);
+                            System.out.print(Colors.YELLOW_BRIGHT + ">> " + Colors.RESET);
+                            String tag = InputHandler.inputHandler().next();
+                            if (itemName.equalsIgnoreCase("cancel")) { ClearConsole.clearConsole();}
+                            else {
+                                Items.addItem(new Items(username, itemName.toLowerCase(), price, tag.toLowerCase()));
+                                System.out.println(Colors.GREEN + "Item added successfully." + Colors.RESET);
+                                Log.itemsLog(username, itemName, "add");
+                            }
+                        }
+                    }
                 } catch (Exception e) {
                     System.out.print(Colors.RED + "Operation failed. Enter the price in numbers!\n" + Colors.RESET);
                 }
@@ -115,9 +127,14 @@ public class SellerPage {
             } else if (perform.toLowerCase().contains("add item")) {
                 String[] args = perform.split("\\s");
                 try {
-                    new BigInteger(args[3]);
-                    Items.addItem(new Items(username ,args[2].toLowerCase(),args[3],args[4].toLowerCase()));
-                    Log.itemsLog(username,args[2],"add");
+                    if (Items.getItem(args[2].toLowerCase()) != null) {
+                        System.out.println(Colors.RED + "This item is already in shop. Try another name!" + Colors.RESET);
+                    } else {
+                        new BigInteger(args[3]);
+                        Items.addItem(new Items(username, args[2].toLowerCase(), args[3], args[4].toLowerCase()));
+                        Log.itemsLog(username, args[2], "add");
+                        System.out.println(Colors.GREEN + "Item added successfully." + Colors.RESET);
+                    }
                 } catch (Exception e) {
                     System.out.print(Colors.RED + "Operation failed. Enter the price in numbers!\n" + Colors.RESET);
                 }

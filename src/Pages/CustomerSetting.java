@@ -18,10 +18,10 @@ public class CustomerSetting {
                     "List of available commands:\n"
                     + Colors.YELLOW + "1. " + Colors.BLUE + "Change username\n"
                     + Colors.YELLOW + "2. " + Colors.BLUE + "Change password\n"
-                    + Colors.YELLOW + "3. " + Colors.BLUE + "complete profile\n"
-                    + Colors.YELLOW + "4. " + Colors.BLUE + "request seller status\n"
-                    + Colors.YELLOW + "5. " + Colors.BLUE + "delete account\n"
-                    + Colors.YELLOW + "6. " + Colors.BLUE + "back" + Colors.RESET);
+                    + Colors.YELLOW + "3. " + Colors.BLUE + "Complete profile\n"
+                    + Colors.YELLOW + "4. " + Colors.BLUE + "Request seller status\n"
+                    + Colors.YELLOW + "5. " + Colors.BLUE + "Delete account\n"
+                    + Colors.YELLOW + "6. " + Colors.BLUE + "Back" + Colors.RESET);
             System.out.print(Colors.YELLOW_BRIGHT + ">> " + Colors.RESET);
             String perform = InputHandler.inputHandler().next();
             switch (perform) {
